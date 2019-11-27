@@ -270,7 +270,6 @@ struct rbnode* rb_delete(struct rbtree* pTree, struct rbnode* target, void (*cop
 void* rb_search(struct rbtree* pTree, int data)
 {
 	struct rbnode* probe = pTree->pRoot;
-#ifdef _USE_LOOSE_COUPLING_
 	while (probe)
 	{
 		if (probe->data == data)
@@ -280,10 +279,6 @@ void* rb_search(struct rbtree* pTree, int data)
 		else
 			probe = probe->lft;
 	}
-#else
-
-	while(probe)
-#endif
 
 	if (probe == &NullNode)
 		return (struct rbnode*)0;
